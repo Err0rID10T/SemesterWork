@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@if (ViewBag.IsAuth)
+{
+    @section MyQuestLink {
+        @Html.Partial("~/Views/Questions/MyQuestLink.cshtml")
+    }
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to the <a class="link-to-quest" asp-controller="Questions" asp-action="Index">Freelance</a>!</h1>
+</div>

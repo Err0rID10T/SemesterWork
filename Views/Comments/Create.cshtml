@@ -1,0 +1,38 @@
+﻿@model Freelance.Models.Comment
+
+@{
+    ViewData["Title"] = "Write Comment";
+}
+
+@section MyQuestLink {
+    @Html.Partial("~/Views/Questions/MyQuestLink.cshtml")
+}
+
+<h4>Write Comment</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control" rows="6"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Date" value="@DateTime.Today.Date" />
+            <input type="hidden" asp-for="UserId" value="@ViewBag.UserId" />
+            <input type="hidden" asp-for="QuestionId" value="@ViewBag.QuestionId" />
+            <div class="form-group">
+                <input type="submit" value="Write" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="Questions" asp-action="Details" asp-route-id="@ViewBag.QuestionId">Back to Question</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

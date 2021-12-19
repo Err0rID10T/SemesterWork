@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Freelance.Models.Question>
+
+@{
+    ViewData["Title"] = ViewBag.Title;
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@if (ViewBag.IsAuth)
+{
+    @section MyQuestLink {
+        @Html.Partial("MyQuestLink")
+    }
+
+    <p>
+        <a asp-action="Create" class="create-link">Create New</a>
+    </p>
+}
+
+<div class="Questions-list">
+    @foreach (var item in Model)
+    {
+        <div class="Question-item">
+            <div class="link-to-quest">
+                <a asp-action="Details" asp-route-id="@item.Id">@item.Topic</a>
+            </div>
+            <div class="meta-fields">
+                <span class="username">@item.User.Email</span>
+                <span class="date">@item.Date.ToLongDateString()</span>
+            </div>
+        </div>
+    }
+</div>
